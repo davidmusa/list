@@ -7,8 +7,8 @@
     $date = date('y-m-d h:ia');
 
     if (isset($_POST['submit'])){
-        if(isset($_POST['name'])) {
-            $todo = htmlspecialchars($_POST['name']);
+        if(isset($_POST['text'])) {
+            $todo = htmlspecialchars($_POST['text']);
             if (empty($todo)) {
             } else {
                 $errors[] = "Please write your to do";

@@ -18,7 +18,7 @@ require_once "inserttodo.php";
 <body>
     <div class="row">
         <div id="order_form" class="column">
-            TO DO: <input type="text" name="name" id="name"><br>
+            TO DO: <input type="text" name="text" id="text"><br>
             <input type="submit" id="submit" name="submit" onclick="get_text()">            
         </div>
         <div id="text_output" class="column" style="background:#ececec;">
@@ -32,7 +32,7 @@ require_once "inserttodo.php";
             var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
             document.getElementById("text_output").innerHTML = loader;
 
-            var q_name = document.getElementById("name").value;
+            var q_text = document.getElementById("text").value;
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -43,7 +43,7 @@ require_once "inserttodo.php";
 
             xhttp.open("POST", "list.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("submit=true&name=" + q_name);
+            xhttp.send("submit=true&text=" + q_text);
 
             insert_todo()
 
@@ -54,7 +54,7 @@ require_once "inserttodo.php";
             var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
             document.getElementById("text_output").innerHTML = loader;
 
-            var q_name = document.getElementById("name").value;
+            var q_text = document.getElementById("text").value;
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -65,7 +65,7 @@ require_once "inserttodo.php";
 
             xhttp.open("POST", "inserttodo.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("submit=true&name=" + q_name);
+            xhttp.send("submit=true&text=" + q_text);
 
         }
 
