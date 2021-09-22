@@ -5,7 +5,6 @@ require_once "list.php"; //ASK IYAD
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,16 +17,16 @@ require_once "list.php"; //ASK IYAD
 <body>
     <div class="row">
         <div id="order_form" class="column">
-            TO DO: <input type="text" name="name"><br>
-            <input type="submit" id="submit" name="submit" onclick="loadDoc()">            
+            TO DO: <input type="text" name="name" id="name"><br>
+            <input type="submit" id="submit" name="submit" onclick="get_text()">            
         </div>
-        <div id="text_output">
+        <div id="text_output" class="column" style="background:#ececec;">
             List
         </div>
     </div>
 
     <script>
-        function loadDoc() {
+        function get_text() {
 
             var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
             document.getElementById("text_output").innerHTML = loader;
@@ -40,10 +39,12 @@ require_once "list.php"; //ASK IYAD
                     document.getElementById("text_output").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "list.php", true);
+
+            xhttp.open("POST", "list.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("submit=true&text=" + q_name);
-            }
+            xhttp.send("submit=true&name=" + q_name);
+
+        }
 
     </script>
 

@@ -33,5 +33,19 @@
     mysqli_close($link);
 
     }
+
+    $sql = "SELECT todo, date_time FROM list";
+    $result = $link->query($sql);
+
+    if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_array()) {
+        echo "to do: " . $row["todo"]. "<br>";
+    }
+    } else {
+    echo "0 results";
+    }
+    $link->close();
+
     
 ?>
