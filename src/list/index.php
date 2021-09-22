@@ -1,6 +1,7 @@
 <?php
 
 require_once "config.php";
+require_once "list.php"; //ASK IYAD 
 
 ?>
 
@@ -15,24 +16,35 @@ require_once "config.php";
     <title>TO DO</title>
 </head>
 <body>
-    <div id="demo">
-        TO DO: <input type="text" name="name"><br>
-        <input type="submit" id="submit" name="submit" onclick="loadDoc()">
+    <div class="row">
+        <div id="order_form" class="column">
+            TO DO: <input type="text" name="name"><br>
+            <input type="submit" id="submit" name="submit" onclick="loadDoc()">            
+        </div>
+        <div id="text_output">
+            List
+        </div>
     </div>
 
     <script>
         function loadDoc() {
 
-            var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';    
+            var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
+            document.getElementById("text_output").innerHTML = loader;
+
+            var q_name = document.getElementById("name");
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("demo").innerHTML = this.responseText;
+                    document.getElementById("text_output").innerHTML = this.responseText;
                 }
             };
-        xhttp.open("GET", "list.php", true);
-        xhttp.send();
-        }
+            xhttp.open("GET", "list.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("submit=true&text=" + q_name);
+            }
+
     </script>
 
 </body>

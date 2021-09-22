@@ -12,6 +12,8 @@
     //Requires files
     require_once "config.php";
 
+    $todo = "";
+
     if (isset($_POST['submit'])){
 
     // Escape user inputs for security
