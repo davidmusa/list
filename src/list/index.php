@@ -1,7 +1,8 @@
 <?php
 
 require_once "config.php";
-require_once "list.php"; //ASK IYAD 
+require_once "list.php"; 
+require_once "inserttodo.php";
 
 ?>
 
@@ -31,7 +32,7 @@ require_once "list.php"; //ASK IYAD
             var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
             document.getElementById("text_output").innerHTML = loader;
 
-            var q_name = document.getElementById("name");
+            var q_name = document.getElementById("name").value;
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -41,6 +42,28 @@ require_once "list.php"; //ASK IYAD
             };
 
             xhttp.open("POST", "list.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("submit=true&name=" + q_name);
+
+            insert_todo()
+
+        }
+
+        function insert_todo(){
+
+            var loader = '<div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';  
+            document.getElementById("text_output").innerHTML = loader;
+
+            var q_name = document.getElementById("name").value;
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("text_output").innerHTML = this.responseText;
+                }
+            };
+
+            xhttp.open("POST", "inserttodo.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("submit=true&name=" + q_name);
 

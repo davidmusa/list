@@ -15,27 +15,18 @@
     require_once "config.php";
 
     $todo = "";
+    $date = "";
 
-    $todo = (htmlspecialchars($_POST['name']));
+    //$todo = (htmlspecialchars($_POST['name']));
 
     $errors = Array();
 
     //Escape user inputs for security
-    $todo= mysqli_real_escape_string(
-    $link, $_REQUEST['todo']);
-    date_default_timezone_set('America/Toronto');
-    $date=date('y-m-d h:ia');
+    //$todo= mysqli_real_escape_string(
+    //$link, $_REQUEST['todo']);
+    //date_default_timezone_set('America/Toronto');
+    //$date=date('y-m-d h:ia');
 
-    // Attempt insert query execution
-    $sql = "INSERT INTO list (todo, date_time) VALUES ('$todo', '$date')";
-    if(mysqli_query($link, $sql)){
-    ;
-    } else {
-    echo "ERROR: Message not sent!!!";
-    }
-    // Close connection
-    mysqli_close($link);
-    
     $query = "SELECT * FROM list ORDER BY date_time DESC LIMIT 100";
     $exec = $link->query($query);
 
@@ -57,11 +48,13 @@
                     echo $errors[$i] . "<br>";
                 }
             } else {
-                //show detailed receipt
+                //show details
                 echo "Todo : " . $todo . "$<br>";
 
             }
     }
+
+   
 
     /*$sql = "SELECT todo, date_time FROM list";
     $result = $link->query($sql);
